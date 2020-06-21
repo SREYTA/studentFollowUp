@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
+use Auth;
 use App\User;
 class StudentController extends Controller
 {
@@ -36,7 +37,26 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::all();
+        $student =new Student;
+        if($request->picture == null){
+            $student -> picture = "student.png";
+        }else {
+            request()->validate([
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+            request()->picture->move(public_path('/img_student/'), $imageName);
+            $student -> picture = $imageName;
+        }
+        
+        $student -> firstname = $request -> get('firstname');
+        $student -> lastname = $request -> get('lastname');
+        $student -> class = $request -> get('class');
+        $student -> description = $request -> get('description');
+        $student -> user_id = auth::id();
+        $student -> save();
+        return redirect('/home');
     }
 
     /**
@@ -58,7 +78,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        return view('home',compact('student'));
     }
 
     /**
@@ -70,7 +91,24 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $student = Student::find($id);
+        if($request->picture == null){
+            $student -> picture = "student.png";
+        }else {
+            request()->validate([
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time().'.'.request()->picture->getClientOriginalExtension();
+            request()->picture->move(public_path('/img_student/'), $imageName);
+            $student -> picture = $imageName;
+        }
+        
+        $student -> firstname = $request -> get('firstname');
+        $student -> lastname = $request -> get('lastname');
+        $student -> class = $request -> get('class');
+        $student -> description = $request -> get('description');
+        $student -> save();
+        return redirect('/home');
     }
 
     /**
