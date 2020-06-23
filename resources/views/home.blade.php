@@ -92,123 +92,129 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    @foreach ($students as $student)
+                    @foreach ($students as $active_stu)
                     <tbody>
                         <tr>
-                            <td><img src="{{asset('img_student/'.$student->picture)}}" width="40" style="border-radius: 25px;" height="40" alt="User" /></td>
-                            <td>{{$student->firstname}}</td>
-                            <td>{{$student->lastname}}</td>
-                            <td>{{$student->class}}</td>
-                            <td>
-                                <a href=""><span class="material-icons text-success">person_add_disabled</span></a>
-                                <a type="button" class="mt-3" data-toggle="modal" data-target="#updateStudent">
-                                    <span class="material-icons text-primary">edit</span>
-                                </a>
-                                
-                                <!-- The Modal -->
-                                <div class="modal" id="updateStudent">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
+                                <td><img src="{{asset('img_student/'.$active_stu->picture)}}" width="40" style="border-radius: 25px;" height="40" alt="User" /></td>
+                                <td>{{$active_stu->firstname}}</td>
+                                <td>{{$active_stu->lastname}}</td>
+                                <td>{{$active_stu->class}}</td>
+                                <td>
+                                    <a href="{{ route('student.index')}}"><span class="material-icons text-success">person_add_disabled</span>
+                                        {{-- In Followup List --}}
+                                        @if ($active_stu->activeFollowup == 1) 
+                                            <a href="{{ route('active',$active_stu->id)}}"></a>
+                                        @endif
+                                    </a>
+                                    <a type="button" class="mt-3" data-toggle="modal" data-target="#updateStudent">
+                                        <span class="material-icons text-primary">edit</span>
+                                    </a>
                                     
-                                            <!-- Modal Header -->
-                                            <div class="modal-header">
-                                            <h4 class="modal-title">Update Student</h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                    
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                <form action="{{route('student.update', $student->id)}}" method="POST" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('patch')
-                                                    <div class="form-group row">
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control" name="firstname" value="{{$student->firstname}}">
+                                    <!-- The Modal -->
+                                    <div class="modal" id="updateStudent">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                        
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                <h4 class="modal-title">Update Student</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                        
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    <form action="{{route('student.update', $active_stu->id)}}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('patch')
+                                                        <div class="form-group row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" name="firstname" value="{{$active_stu->firstname}}">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" name="lastname" value="{{$active_stu->lastname}}">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control" name="lastname" value="{{$student->lastname}}">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-4">
+                                                                <select id="class" name="class" class="form-control">
+                                                                <option disabled selected>Class</option>
+                                                                @if ($active_stu->class == 'Class A') 
+                                                                    <option value="Class A" selected>Class A</option>
+                                                                    <option value="Class B">Class B</option>
+                                                                    <option value="Class C">Class C</option>
+                                                                    <option value="WEP2020 A">WEP2020 A</option>
+                                                                    <option value="WEP2020 B">WEP2020 B</option>
+                                                                    <option value="SNA2020">SNA2020</option>
+                                                                @endif
+                                                                @if ($active_stu->class == 'Class B') 
+                                                                    <option value="Class A">Class A</option>
+                                                                    <option value="Class B" selected>Class B</option>
+                                                                    <option value="Class C">Class C</option>
+                                                                    <option value="WEP2020 A">WEP2020 A</option>
+                                                                    <option value="WEP2020 B">WEP2020 B</option>
+                                                                    <option value="SNA2020">SNA2020</option>
+                                                                @endif
+                                                                @if ($active_stu->class == 'Class C') 
+                                                                    <option value="Class A">Class A</option>
+                                                                    <option value="Class B">Class B</option>
+                                                                    <option value="Class C" selected>Class C</option>
+                                                                    <option value="WEP2020 A">WEP2020 A</option>
+                                                                    <option value="WEP2020 B">WEP2020 B</option>
+                                                                    <option value="SNA2020">SNA2020</option>
+                                                                @endif
+                                                                @if ($active_stu->class == 'WEP2020 A') 
+                                                                    <option value="Class A">Class A</option>
+                                                                    <option value="Class B">Class B</option>
+                                                                    <option value="Class C">Class C</option>
+                                                                    <option value="WEP2020 A" selected>WEP2020 A</option>
+                                                                    <option value="WEP2020 B">WEP2020 B</option>
+                                                                    <option value="SNA2020">SNA2020</option>
+                                                                @endif
+                                                                @if ($active_stu->class == 'WEP2020 B') 
+                                                                    <option value="Class A">Class A</option>
+                                                                    <option value="Class B">Class B</option>
+                                                                    <option value="Class C">Class C</option>
+                                                                    <option value="WEP2020 A">WEP2020 A</option>
+                                                                    <option value="WEP2020 B" selected>WEP2020 B</option>
+                                                                    <option value="SNA2020">SNA2020</option>
+                                                                @endif
+                                                                @if ($active_stu->class == 'SNA2020') 
+                                                                    <option value="Class A">Class A</option>
+                                                                    <option value="Class B">Class B</option>
+                                                                    <option value="Class C">Class C</option>
+                                                                    <option value="WEP2020 A">WEP2020 A</option>
+                                                                    <option value="WEP2020 B">WEP2020 B</option>
+                                                                    <option value="SNA2020" selected>SNA2020</option>
+                                                                @endif
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4 form-control">
+                                                                <input type="file" id="picture" name="picture">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <select id="tutor" name="tutor" class="form-control">
+                                                                    <option value="{{ Auth::user()->firstname }}" selected>{{ Auth::user()->firstname }}</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-md-4">
-                                                            <select id="class" name="class" class="form-control">
-                                                            <option disabled selected>Class</option>
-                                                            @if ($student->class == 'Class A') 
-                                                                <option value="Class A" selected>Class A</option>
-                                                                <option value="Class B">Class B</option>
-                                                                <option value="Class C">Class C</option>
-                                                                <option value="WEP2020 A">WEP2020 A</option>
-                                                                <option value="WEP2020 B">WEP2020 B</option>
-                                                                <option value="SNA2020">SNA2020</option>
-                                                            @endif
-                                                            @if ($student->class == 'Class B') 
-                                                                <option value="Class A">Class A</option>
-                                                                <option value="Class B" selected>Class B</option>
-                                                                <option value="Class C">Class C</option>
-                                                                <option value="WEP2020 A">WEP2020 A</option>
-                                                                <option value="WEP2020 B">WEP2020 B</option>
-                                                                <option value="SNA2020">SNA2020</option>
-                                                            @endif
-                                                            @if ($student->class == 'Class C') 
-                                                                <option value="Class A">Class A</option>
-                                                                <option value="Class B">Class B</option>
-                                                                <option value="Class C" selected>Class C</option>
-                                                                <option value="WEP2020 A">WEP2020 A</option>
-                                                                <option value="WEP2020 B">WEP2020 B</option>
-                                                                <option value="SNA2020">SNA2020</option>
-                                                            @endif
-                                                            @if ($student->class == 'WEP2020 A') 
-                                                                <option value="Class A">Class A</option>
-                                                                <option value="Class B">Class B</option>
-                                                                <option value="Class C">Class C</option>
-                                                                <option value="WEP2020 A" selected>WEP2020 A</option>
-                                                                <option value="WEP2020 B">WEP2020 B</option>
-                                                                <option value="SNA2020">SNA2020</option>
-                                                            @endif
-                                                            @if ($student->class == 'WEP2020 B') 
-                                                                <option value="Class A">Class A</option>
-                                                                <option value="Class B">Class B</option>
-                                                                <option value="Class C">Class C</option>
-                                                                <option value="WEP2020 A">WEP2020 A</option>
-                                                                <option value="WEP2020 B" selected>WEP2020 B</option>
-                                                                <option value="SNA2020">SNA2020</option>
-                                                            @endif
-                                                            @if ($student->class == 'SNA2020') 
-                                                                <option value="Class A">Class A</option>
-                                                                <option value="Class B">Class B</option>
-                                                                <option value="Class C">Class C</option>
-                                                                <option value="WEP2020 A">WEP2020 A</option>
-                                                                <option value="WEP2020 B">WEP2020 B</option>
-                                                                <option value="SNA2020" selected>SNA2020</option>
-                                                            @endif
-                                                            </select>
+                                                        <div class="form-group row">
+                                                            <div class="col-md-12">
+                                                                <textarea name="description" cols="30" rows="3" class="form-control" value="{{$active_stu->description}}"></textarea>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-4 form-control">
-                                                            <input type="file" id="picture" name="picture">
+                                                        <!-- Modal footer -->
+                                                        
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Update</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <select id="tutor" name="tutor" class="form-control">
-                                                                <option value="{{ Auth::user()->firstname }}" selected>{{ Auth::user()->firstname }}</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-md-12">
-                                                            <textarea name="description" cols="30" rows="3" class="form-control" value="{{$student->description}}"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Modal footer -->
-                                                    
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary">Update</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
+                            </a>
                         </tr>
                     </tbody>
                    
@@ -226,16 +232,21 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    @foreach ($students as $student)
+                    @foreach ($students as $stu)
+                    {{-- Not in Followup List --}}
+                        @if ($stu->activeFollowup == 0) 
+                            <a href="{{ route('active',$stu->id)}}"></a>
                     <tbody>
                         <tr>
-                            <td><img src="{{asset('img_student/'.$student->picture)}}" width="40" style="border-radius: 25px;" height="40" alt="User" /></td>
-                            <td>{{$student->firstname}}</td>
-                            <td>{{$student->lastname}}</td>
-                            <td>{{$student->class}}</td>
-                            <td><span class="material-icons text-danger">domain</span></td>
-                        </tr>
-                    </tbody>
+                                                    <td><img src="{{asset('img_student/'.$stu->picture)}}" width="40" style="border-radius: 25px;" height="40" alt="User" /></td>
+                                                    <td>{{$stu->firstname}}</td>
+                                                    <td>{{$stu->lastname}}</td>
+                                                    <td>{{$stu->class}}</td>
+                                                    <td><span class="material-icons text-danger">domain</span></td>
+                                                </tr>
+                                            </tbody>
+                        @endif
+                    
                     @endforeach
                 </table>
             </div>
