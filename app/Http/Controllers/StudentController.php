@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Student;
 use Auth;
 use App\User;
+use App\Comment;
 class StudentController extends Controller
 {
     /**
@@ -15,8 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
-        return view('home', compact('students'));
+       
     }
 
     /**
@@ -67,7 +67,9 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = Student::find($id);
+        $comments = $student->comments;
+        return view('comment', compact('student', 'comments'));
     }
 
     /**
@@ -121,13 +123,19 @@ class StudentController extends Controller
     {
         //
     }
+    // get active student 
+    public function followup($id){
+        $students = Student::find($id);
+        $students -> activeFollowup= true;
+        $students -> save();
+        return back();
+    }
+    // get active student 
     public function active($id){
         $students = Student::find($id);
         $students -> activeFollowup= false;
         $students -> save();
         return back();
     }
-
-    
 
 }

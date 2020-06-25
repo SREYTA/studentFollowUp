@@ -23,3 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/student','StudentController');
 Route::get('/studentList','StudentController@studentList')->name('studentList');
 Route::get('/active/{id}','StudentController@active')->name('active');
+Route::get('/followup/{id}','StudentController@followup')->name('followup');
+Route::get('/pageComment','StudentController@viewComment')->name('pageComment');
+Route::resource('/comment','CommentController');

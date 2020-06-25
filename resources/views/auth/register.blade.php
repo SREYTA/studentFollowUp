@@ -8,9 +8,8 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form action="{{ route('home') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
@@ -66,7 +65,13 @@
                             <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
 
                             <div class="col-md-6">
-                                <input id="position" type="selected" class="form-control" name="position" required autocomplete="position">
+                                <select id="position" name="position" class="form-control">
+                                    <option disabled selected>Position</option>
+                                    <option value="1">Training Manager</option>
+                                    <option value="2">SNA Trainer</option>
+                                    <option value="3">WEP Trainer</option>
+                                    <option value="4">Educator</option>
+                                </select>
                             </div>
                         </div>
 
