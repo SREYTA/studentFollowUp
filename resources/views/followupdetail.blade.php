@@ -1,6 +1,5 @@
 @extends('layouts.app')
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+
 @section('content')
 <div class="container mt-3">
     <div class="card">
@@ -23,7 +22,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    Tutor By: {{ Auth::user()->firstname }}
+                    @foreach ($tutors as $tutor)
+                        {{$tutor->created_at}}   
+                        @if ($student->user_id == $tutor->id)
+                        Tutor By: {{$tutor->firstname}}
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <hr>

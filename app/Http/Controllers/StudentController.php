@@ -68,8 +68,9 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::find($id);
+        $tutors = User::all();
         $comments = $student->comments;
-        return view('comment', compact('student', 'comments'));
+        return view('followupdetail', compact('student', 'comments','tutors'));
     }
 
     /**
@@ -109,6 +110,7 @@ class StudentController extends Controller
         $student -> lastname = $request -> get('lastname');
         $student -> class = $request -> get('class');
         $student -> description = $request -> get('description');
+        $student -> user_id = $request -> tutor;
         $student -> save();
         return redirect('/home');
     }
