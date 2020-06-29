@@ -12,21 +12,31 @@
             <a class="nav-link" data-toggle="tab" href="#outFolloup">Out Of Followup</a>
         </li>
     </ul>
-        {{-- button search --}}
-        <input class="form-control mt-3" id="myInput" type="text" placeholder="Search..">
-        <!-- Tab panes -->
-        <div class="tab-content">
-            @if (Auth::user()->role==1) 
-            <!-- Add student -->
-            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#addStudent">
-                Add Student
-            </button>
-            @endif
-            @include('addstudent')
+
+    {{-- button search --}}
+    <input class="form-control mt-3" id="myInput" type="text" placeholder="Search..">
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        @if (Auth::user()->role==0)
+        <!-- Add student -->
+        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#addStudent">
+            Add Student
+        </button>
+        @endif
+        @include('student/addstudent')
+        
+        {{-- student followup list --}}
+        <div id="followup" class="container tab-pane active"><br>
             @include('followuplist')
+        </div>
+
+        {{-- student out of followup list --}}
+        <div id="outFolloup" class="container tab-pane fade"><br>
             @include('outfollowup')
         </div>
     </div>
+
     <script>
         // search students
         $(document).ready(function(){
@@ -37,6 +47,7 @@
             });
           });
         });
+        
         // link to URL
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
@@ -44,6 +55,5 @@
             });
         });
     </script>
-    
 </div>
 @endsection

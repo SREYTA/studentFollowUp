@@ -13,10 +13,9 @@ class Student extends Model
         return $this->belongsToMany('Student::class')->withPivot('comment');
     }
 
-    // public function comments($id){
-    //     $user = User::find($id);
-    //     return $user->firstname;
-    // }
+    public function comments(){
+        return $this->hasMany('Comment::class'); 
+    }
     /**
      * The attributes that are mass assignable.
      *

@@ -3,8 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
-use App\Student;
+
 class Comment extends Model
 {
     public function user(){

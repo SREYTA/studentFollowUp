@@ -69,7 +69,7 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         $tutors = User::all();
-        $comments = $student->comments;
+        $comments = Comment::all();            
         return view('followupdetail', compact('student', 'comments','tutors'));
     }
 

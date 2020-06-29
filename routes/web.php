@@ -26,3 +26,4 @@ Route::get('/active/{id}','StudentController@active')->name('active');
 Route::get('/followup/{id}','StudentController@followup')->name('followup');
 Route::get('/pageComment','StudentController@viewComment')->name('pageComment');
 Route::resource('/comment','CommentController');
+Route::POST('/comment{id}','CommentController@addComment')->name('addComment');
