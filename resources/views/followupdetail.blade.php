@@ -2,13 +2,12 @@
 
 @section('content')
 <div class="container mt-3">
-    {{-- {{dd($student)}} --}}
+    <!-- show information detail about student -->
     <div class="card">
         <div class="card-header bg-light mx-auto">
             <img src="{{asset('img_student/'.$student->picture)}}" width="80" style="border-radius: 25px;" height="80" alt="User" />
         </div>
         <hr>
-        <!-- show information detail about student -->
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col-md-12">
@@ -44,13 +43,17 @@
                 </div>
             </div>
             <div class="row">
-                @foreach ($comments as $comment_stu)
-                {{-- {{dd($comment_stu->id)}} --}}
+                @foreach ($student-> comments as $comment_stu)
                 <div class="col-md-1">
-                    <img src="{{asset('img_student/admin.jpg')}}" width="50" style="border-radius: 25px;" height="50" alt="User"/>
+                    @if ($comment_stu->user_id == 1)
+                        <img src="{{asset('img_student/admin.jpg')}}" width="50" style="border-radius: 25px;" height="50" alt="User"/>
+                    @else
+                        <img src="{{asset('img_student/tutor.jpg')}}" width="50" style="border-radius: 25px;" height="50" alt="User"/>
+                        
+                    @endif
                 </div>
                 <div class="col-md-11">
-                    <b>{{Auth::user()->firstname}}</b> {{$comment_stu->created_at}}
+                    <b>{{$comment_stu->user['firstname']}}</b> {{$comment_stu->created_at}}
                     <div class="card alert alert-secondary mt-2">
                         {{$comment_stu->comment}}  
                     </div>

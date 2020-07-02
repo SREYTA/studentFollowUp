@@ -8,23 +8,37 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form action="{{ route('home') }}">
+                    <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="form-group row">
                             <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fname" type="text" class="form-control" name="firstName" required autocomplete="firstName">
+                                <input id="fname" type="text" class="form-control" name="firstname" required autocomplete="firstname">
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lname" type="text" class="form-control" name="lastName" required autocomplete="lastName">
+                                <input id="lname" type="text" class="form-control" name="lastname" required autocomplete="lastname">
                             </div>
                         </div>
                 
+                        <div class="form-group row">
+                            <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
+                            <div class="col-md-6">
+                                <select id="position_id" name="position_id" class="form-control">
+                                    <option disabled selected>Position</option>
+                                    <option value="1">Training Manager</option>
+                                    <option value="2">SNA Trainer</option>
+                                    <option value="3">WEP Trainer</option>
+                                    <option value="4">Educator</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -58,20 +72,6 @@
                             
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="position" name="position" class="form-control">
-                                    <option disabled selected>Position</option>
-                                    <option value="1">Training Manager</option>
-                                    <option value="2">SNA Trainer</option>
-                                    <option value="3">WEP Trainer</option>
-                                    <option value="4">Educator</option>
-                                </select>
                             </div>
                         </div>
 

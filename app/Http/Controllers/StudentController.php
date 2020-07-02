@@ -9,25 +9,6 @@ use App\User;
 use App\Comment;
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-       
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -115,24 +96,14 @@ class StudentController extends Controller
         return redirect('/home');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    // get active student 
+    // change stutus student(student followup), activefollowup = 1 
     public function followup($id){
         $students = Student::find($id);
         $students -> activeFollowup= true;
         $students -> save();
         return back();
     }
-    // get active student 
+    // change stutus student(student out of followup), activefollowup = 0
     public function active($id){
         $students = Student::find($id);
         $students -> activeFollowup= false;

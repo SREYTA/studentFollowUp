@@ -5,7 +5,9 @@
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Class</th>
+            @if (Auth::user()->role==1)
             <th>Action</th>
+            @endif
         </tr>
     </thead>
     @foreach ($students as $stu)
@@ -18,9 +20,11 @@
             <td>{{$stu->firstname}}</td>
             <td>{{$stu->lastname}}</td>
             <td>{{$stu->class}}</td>
+            @if (Auth::user()->role==1)
             <td>
                 <a href="{{ route('followup',$stu->id)}}"><span class="material-icons text-danger">domain</span></a>
             </td>
+            @endif
         </tr>
     </tbody>
         @endif

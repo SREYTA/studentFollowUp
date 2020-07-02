@@ -18,7 +18,7 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
-        @if (Auth::user()->role==0)
+        @if (Auth::user()->role==1)
         <!-- Add student -->
         <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#addStudent">
             Add Student
@@ -48,7 +48,7 @@
           });
         });
         
-        // link to URL
+        // link to URL(when click on the row of information student)
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
                 window.location = $(this).data("href");

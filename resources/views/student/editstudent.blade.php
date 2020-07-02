@@ -25,55 +25,12 @@
                     <div class="form-group row">
                         <div class="col-md-4">
                             <select id="class" name="class" class="form-control">
-                            <option disabled selected>Class</option>
-                            @if ($active_stu->class == 'Class A') 
-                                <option value="Class A" selected>Class A</option>
-                                <option value="Class B">Class B</option>
-                                <option value="Class C">Class C</option>
-                                <option value="WEP2020 A">WEP2020 A</option>
-                                <option value="WEP2020 B">WEP2020 B</option>
-                                <option value="SNA2020">SNA2020</option>
-                            @endif
-                            @if ($active_stu->class == 'Class B') 
-                                <option value="Class A">Class A</option>
-                                <option value="Class B" selected>Class B</option>
-                                <option value="Class C">Class C</option>
-                                <option value="WEP2020 A">WEP2020 A</option>
-                                <option value="WEP2020 B">WEP2020 B</option>
-                                <option value="SNA2020">SNA2020</option>
-                            @endif
-                            @if ($active_stu->class == 'Class C') 
-                                <option value="Class A">Class A</option>
-                                <option value="Class B">Class B</option>
-                                <option value="Class C" selected>Class C</option>
-                                <option value="WEP2020 A">WEP2020 A</option>
-                                <option value="WEP2020 B">WEP2020 B</option>
-                                <option value="SNA2020">SNA2020</option>
-                            @endif
-                            @if ($active_stu->class == 'WEP2020 A') 
-                                <option value="Class A">Class A</option>
-                                <option value="Class B">Class B</option>
-                                <option value="Class C">Class C</option>
-                                <option value="WEP2020 A" selected>WEP2020 A</option>
-                                <option value="WEP2020 B">WEP2020 B</option>
-                                <option value="SNA2020">SNA2020</option>
-                            @endif
-                            @if ($active_stu->class == 'WEP2020 B') 
-                                <option value="Class A">Class A</option>
-                                <option value="Class B">Class B</option>
-                                <option value="Class C">Class C</option>
-                                <option value="WEP2020 A">WEP2020 A</option>
-                                <option value="WEP2020 B" selected>WEP2020 B</option>
-                                <option value="SNA2020">SNA2020</option>
-                            @endif
-                            @if ($active_stu->class == 'SNA2020') 
-                                <option value="Class A">Class A</option>
-                                <option value="Class B">Class B</option>
-                                <option value="Class C">Class C</option>
-                                <option value="WEP2020 A">WEP2020 A</option>
-                                <option value="WEP2020 B">WEP2020 B</option>
-                                <option value="SNA2020" selected>SNA2020</option>
-                            @endif
+                                <option {{old('class',$active_stu->class) == "Class A"?'selected':''}}>Class A</option>
+                                <option {{old('class',$active_stu->class) == "Class B"?'selected':''}}>Class B</option>
+                                <option {{old('class',$active_stu->class) == "Class C"?'selected':''}}>Class C</option>
+                                <option {{old('class',$active_stu->class) == "WEP2020 A"?'selected':''}}>WEP2020 A</option>
+                                <option {{old('class',$active_stu->class) == "WEP2020 B"?'selected':''}}>WEP2020 B</option>
+                                <option {{old('class',$active_stu->class) == "SNA2020"?'selected':''}}>SNA2020</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-control">
